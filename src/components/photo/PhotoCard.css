@@ -1,0 +1,46 @@
+.photo-card {
+    padding: 0.4rem;
+    border: 1px solid #cacaca;
+}
+
+.photo-card_small {
+    max-width: 800px;
+    padding: 1rem;
+}
+
+.photo-card__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.photo-card__time {
+    font-size: 0.8rem;
+    color: #838383;
+}
+
+.photo-card__likes-label {
+    display: flex;
+    align-items: center;
+    opacity: 0.8;
+    transition: opacity ease-in;
+    color: #333;
+    cursor: pointer;
+}
+
+.photo-card__likes-label:hover {
+    opacity: 1;
+    color: #000;
+}
+
+.photo-card__likes-checkbox {
+    display: none;
+}
+
+@media (max-width: 425px) {
+    .photo-card__content {
+        flex-direction: column;
+    }
+    .photo-card__likes {
+        margin-top: 1rem;
+    }
+}

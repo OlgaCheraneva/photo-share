@@ -1,0 +1,14 @@
+export const GET_PHOTOS = 'GET_PHOTOS';
+export const GET_PHOTO = 'GET_PHOTO';
+export const CLEAR_PHOTO = 'CLEAR_PHOTO';
+export const SET_LOADING = 'SET_LOADING';
+export const SET_AUTH_LOADING = 'SET_AUTH_LOADING';
+export const SET_DOWNLOAD_BTN_VISIBILITY = 'SET_DOWNLOAD_BTN_VISIBILITY';
+export const SET_SCROLLED_BY_Y = 'SET_SCROLLED_BY_Y';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const PHOTO_ERROR = 'PHOTO_ERROR';
+export const UPDATE_LIKES = 'UPDATE_LIKES';
