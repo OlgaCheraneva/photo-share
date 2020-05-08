@@ -2,13 +2,13 @@ import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import Home from './pages/Home';
-import Photo from './pages/Photo';
-import Auth from './pages/Auth';
-import NotFound from './pages/NotFound';
-import Navbar from './components/layout/Navbar';
-import Alerts from './components/layout/Alerts';
-import {loginWithToken} from './actions/auth';
+import Home from '../pages/Home';
+import Photo from '../pages/Photo';
+import Auth from '../pages/Auth';
+import NotFound from '../pages/NotFound';
+import Navbar from '../components/layout/Navbar';
+import Alerts from '../components/layout/Alerts';
+import {loginWithToken} from '../actions/auth';
 import './App.css';
 
 function App({loginWithToken}) {

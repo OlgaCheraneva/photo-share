@@ -8,7 +8,7 @@
     padding: 1rem;
 }
 
-.photo-card__content {
+.photo-card__content-top {
     display: flex;
     justify-content: space-between;
 }

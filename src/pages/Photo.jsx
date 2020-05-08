@@ -23,6 +23,7 @@ const Photo = ({
 
     useEffect(() => {
         getPhoto(match.params.id);
+        // eslint-disable-next-line
     }, [auth]);
 
     return loading || photo === null ? (

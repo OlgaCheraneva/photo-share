@@ -83,6 +83,7 @@ export const toggleLike = ({id, liked_by_user}) => async (dispatch) => {
 export const setLoading = () => ({type: SET_LOADING});
 
 function handleError(dispatch, error) {
+    console.log(error);
     dispatch({
         type: PHOTO_ERROR,
         payload: error,

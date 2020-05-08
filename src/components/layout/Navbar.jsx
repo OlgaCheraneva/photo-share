@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import {authenticationUrl} from '../../unsplash';
 import {logout} from '../../actions/auth';
-import sprite from '../../sprite.svg';
+import sprite from '../../svg/sprite.svg';
 import './Navbar.css';
 
 const Navbar = ({auth: {isAuthenticated, loading}, logout}) => (
