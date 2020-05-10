@@ -18,7 +18,7 @@ export const getPhotos = () => async (dispatch) => {
     const res = await unsplash.photos.listPhotos(nextPage, limit, orderBy);
     const data = await res.json();
     if (res.status >= 400) {
-        handleError(dispatch, data.error_description);
+        handleError(dispatch, data.errors);
     } else {
         dispatch({
             type: GET_PHOTOS,
@@ -33,7 +33,7 @@ export const getPhoto = (id) => async (dispatch) => {
     const res = await unsplash.photos.getPhoto(id);
     const data = await res.json();
     if (res.status >= 400) {
-        handleError(dispatch, data.error_description);
+        handleError(dispatch, data.errors);
     } else {
         dispatch({
             type: GET_PHOTO,
@@ -46,7 +46,7 @@ export const download = (photo) => async (dispatch) => {
     const res = await unsplash.photos.downloadPhoto(photo);
     const data = await res.json();
     if (res.status >= 400) {
-        handleError(dispatch, data.error_description);
+        handleError(dispatch, data.errors);
     } else {
         window.location.assign(data.url);
     }
@@ -82,11 +82,10 @@ export const toggleLike = ({id, liked_by_user}) => async (dispatch) => {
 
 export const setLoading = () => ({type: SET_LOADING});
 
-function handleError(dispatch, error) {
-    console.log(error);
+function handleError(dispatch, errors) {
     dispatch({
         type: PHOTO_ERROR,
-        payload: error,
+        payload: errors,
     });
-    dispatch(setAlert(error), 'danger');
+    errors.forEach((error) => dispatch(setAlert(error), 'danger'));
 }
