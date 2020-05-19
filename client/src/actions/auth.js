@@ -1,46 +1,50 @@
 import {SET_AUTH_LOADING, LOGOUT, LOGIN, AUTH_ERROR} from './types';
 import {setAlert} from './alert';
-import unsplash from '../unsplash';
 
 export const login = (code, history) => async (dispatch) => {
     dispatch(setLoading());
 
-    if (code) {
-        const res = await unsplash.auth.userAuthentication(code);
-        const data = await res.json();
-        if (res.status >= 400) {
-            const error = data.error_description;
-            dispatch({
-                type: AUTH_ERROR,
-                payload: error,
-            });
-            dispatch(setAlert(error), 'danger');
-        } else {
-            const token = data.access_token;
-            unsplash.auth.setBearerToken(token);
+    if (!code) return;
 
+    try {
+        const res = await fetch(`/api/auth?code=${code}`);
+        const data = await res.json();
+
+        if (res.ok) {
             dispatch({
                 type: LOGIN,
-                payload: token,
+                payload: data, // token string
             });
 
             history.push('/');
+        } else {
+            dispatch({
+                type: AUTH_ERROR,
+                payload: data, // error string
+            });
+            dispatch(setAlert(data), 'danger');
         }
+    } catch (error) {
+        console.error(error);
     }
 };
 
 export const loginWithToken = (token) => async (dispatch) => {
     dispatch(setLoading());
 
-    unsplash.auth.setBearerToken(token);
-    dispatch({
-        type: LOGIN,
-        payload: token,
-    });
+    try {
+        await fetch('/api/auth', {method: 'POST', body: token});
+        dispatch({
+            type: LOGIN,
+            payload: token,
+        });
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 export const logout = () => async (dispatch) => {
-    unsplash.auth.setBearerToken(null);
+    await fetch('/api/auth/logout');
     dispatch({
         type: LOGOUT,
     });

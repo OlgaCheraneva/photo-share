@@ -8,7 +8,6 @@ import {
 } from './types';
 import {setAlert} from './alert';
 import store from '../store';
-import unsplash from '../unsplash';
 
 export const getPhotos = () => async (dispatch) => {
     const {nextPage, limit, orderBy} = store.getState().photos;

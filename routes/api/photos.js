@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         const {page, limit, orderBy} = req.query;
         const response = await unsplash.photos.listPhotos(page, limit, orderBy);
         const data = await response.json();
-        if (response.status !== 200) {
+        if (response.status >= 400) {
             return res.status(404).json(data.errors); // [string]
         }
         res.json(data); // [photo object]
@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
     try {
         const response = await unsplash.photos.getPhoto(req.params.id);
         const data = await response.json();
-        if (response.status !== 200) {
+        if (response.status >= 400) {
             return res.status(404).json(data.errors); // [string]
         }
         res.json(data); // photo object

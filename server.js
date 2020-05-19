@@ -12,6 +12,7 @@ const app = express();
 
 app.use(express.json({extended: false}));
 
+app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/photos', require('./routes/api/photos'));
 
 if (process.env.NODE_ENV === 'production') {
