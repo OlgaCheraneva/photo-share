@@ -15,40 +15,54 @@ export const getPhotos = () => async (dispatch) => {
 
     if (nextPage === 1) dispatch(setLoading());
 
-    const res = await unsplash.photos.listPhotos(nextPage, limit, orderBy);
-    const data = await res.json();
-    if (res.status >= 400) {
-        handleError(dispatch, data.errors);
-    } else {
-        dispatch({
-            type: GET_PHOTOS,
-            payload: data,
-        });
+    try {
+        const res = await fetch(
+            `/api/photos?page=${nextPage}&limit=${limit}&orderBy=${orderBy}`
+        );
+        const data = await res.json();
+        if (res.ok) {
+            dispatch({
+                type: GET_PHOTOS,
+                payload: data,
+            });
+        } else {
+            handleError(dispatch, data);
+        }
+    } catch (error) {
+        console.error(error);
     }
 };
 
 export const getPhoto = (id) => async (dispatch) => {
     dispatch(setLoading());
 
-    const res = await unsplash.photos.getPhoto(id);
-    const data = await res.json();
-    if (res.status >= 400) {
-        handleError(dispatch, data.errors);
-    } else {
-        dispatch({
-            type: GET_PHOTO,
-            payload: data,
-        });
+    try {
+        const res = await fetch(`/api/photos/${id}`);
+        const data = await res.json(); // photo object or errors [string]
+        if (res.ok) {
+            dispatch({
+                type: GET_PHOTO,
+                payload: data,
+            });
+        } else {
+            handleError(dispatch, data);
+        }
+    } catch (error) {
+        console.error(error);
     }
 };
 
 export const download = (photo) => async (dispatch) => {
-    const res = await unsplash.photos.downloadPhoto(photo);
-    const data = await res.json();
-    if (res.status >= 400) {
-        handleError(dispatch, data.errors);
-    } else {
-        window.location.assign(data.url);
+    try {
+        const res = await fetch(`/api/photos/download/${photo.id}`);
+        const data = await res.json(); // photo {url} or errors [string]
+        if (res.ok) {
+            window.open(photo.urls.raw);
+        } else {
+            handleError(dispatch, data);
+        }
+    } catch (error) {
+        console.error(error);
     }
 };
 
@@ -58,9 +72,10 @@ export const toggleLike = ({id, liked_by_user}) => async (dispatch) => {
     const {isAuthenticated} = store.getState().auth;
 
     if (isAuthenticated) {
-        const res = liked_by_user
-            ? await unsplash.photos.unlikePhoto(id)
-            : await unsplash.photos.likePhoto(id);
+        const res = await fetch(
+            `/api/photos/${liked_by_user ? 'unlike' : 'like'}/${id}`,
+            {method: 'PUT'}
+        );
         const {photo} = await res.json();
         dispatch({
             type: UPDATE_LIKES,

@@ -1,3 +1,4 @@
-/node_modules
-/build
-.env.local
+node_modules/
+build/
+/client/.env.local
+.env

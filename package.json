@@ -1,49 +1,36 @@
 {
   "name": "photo-share",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "4.2.4",
-    "@testing-library/react": "9.5.0",
-    "@testing-library/user-event": "7.2.1",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-redux": "7.2.0",
-    "react-router-dom": "5.1.2",
-    "react-scripts": "3.4.1",
-    "redux": "4.0.5",
-    "redux-devtools-extension": "2.13.8",
-    "redux-thunk": "2.3.0",
-    "unsplash-js": "6.0.0",
-    "uuid": "7.0.3"
-  },
+  "description": "Photo Share Application",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlgaCheraneva/photo-share.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "keywords": [],
+  "author": "Olga Cheraneva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OlgaCheraneva/photo-share/issues"
+  },
+  "homepage": "https://github.com/OlgaCheraneva/photo-share#readme",
+  "dependencies": {
+    "config": "3.3.1",
+    "dotenv": "^8.2.0",
+    "express": "4.17.1",
+    "mongoose": "5.9.7",
+    "node-fetch": "^2.6.0",
+    "unsplash-js": "^6.0.0"
   },
   "devDependencies": {
-    "eslint": "6.8.0",
-    "eslint-config-prettier": "6.11.0",
-    "eslint-plugin-import": "2.20.2",
-    "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.19.0",
-    "eslint-plugin-react-hooks": "2.5.1"
+    "concurrently": "5.1.0",
+    "nodemon": "2.0.2"
   }
 }
