@@ -75,7 +75,8 @@ export const toggleLike = ({id, liked_by_user}) => async (dispatch) => {
             `/api/photos/${liked_by_user ? 'unlike' : 'like'}/${id}`,
             {method: 'PUT'}
         );
-        const {photo} = await res.json();
+        const photo = await res.json();
+
         dispatch({
             type: UPDATE_LIKES,
             payload: {

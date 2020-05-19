@@ -61,7 +61,10 @@ router.put('/like/:id', (req, res) => {
     unsplash.photos
         .likePhoto(req.params.id)
         .then((res) => res.json())
-        .then(({photo}) => res.json(photo))
+        .then((data) => {
+            console.log(data);
+            res.json(data.photo);
+        })
         .catch((error) => {
             console.error(error.message);
             res.status(500).send('Server Error');
