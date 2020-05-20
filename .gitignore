@@ -1,4 +1,3 @@
 node_modules/
 build/
-/client/.env.local
 .env

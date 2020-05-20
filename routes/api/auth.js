@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {unsplash} = require('../../unsplash');
+const {unsplash, authenticationUrl} = require('../../unsplash');
 
 // @route   GET api/auth
 // @desc    Authenticate user & get token
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 // @desc    Authenticate user with the token
 // @access  Public
 router.post('/', (req, res) => {
-    unsplash.auth.setBearerToken(req.body);
+    unsplash.auth.setBearerToken(req.body.token);
     res.status(200).send();
 });
 
@@ -34,6 +34,13 @@ router.post('/', (req, res) => {
 router.get('/logout', (_req, res) => {
     unsplash.auth.setBearerToken(null);
     res.status(200).send();
+});
+
+// @route   GET api/auth/authenticationUrl
+// @desc    Get an authentication URL
+// @access  Public
+router.get('/authenticationUrl', async (_req, res) => {
+    res.json(authenticationUrl);
 });
 
 module.exports = router;

@@ -53,7 +53,9 @@ export const getPhoto = (id) => async (dispatch) => {
 
 export const download = (photo) => async (dispatch) => {
     try {
-        const res = await fetch(`/api/photos/download/${photo.id}`);
+        const res = await fetch(`/api/photos/download/${photo.id}`, {
+            method: 'PUT',
+        });
         const data = await res.json(); // photo {url} or errors [string]
         if (res.ok) {
             window.open(photo.urls.raw);
