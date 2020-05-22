@@ -46,6 +46,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 photo: {...state.photo, comments: action.payload},
+            };
         case CLEAR_PHOTOS:
             return {
                 ...state,
