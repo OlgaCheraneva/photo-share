@@ -12,7 +12,10 @@ const unsplash = new Unsplash({
 
 const authenticationUrl = unsplash.auth.getAuthenticationUrl([
     'public',
-    'write_likes',
+    'read_user',
+    'write_user',
+    'read_photos',
+    'write_photos',
 ]);
 
 module.exports = {unsplash, authenticationUrl};

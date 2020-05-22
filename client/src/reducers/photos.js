@@ -5,6 +5,7 @@ import {
     UPDATE_LIKES,
     PHOTO_ERROR,
     SET_LOADING,
+    ADD_COMMENT,
 } from '../actions/types';
 
 const initialState = {
@@ -36,6 +37,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 photo: null,
+            };
+        case ADD_COMMENT:
+            return {
+                ...state,
+                photo: {...state.photo, comments: action.payload},
             };
         case UPDATE_LIKES:
             const {id} = action.payload;

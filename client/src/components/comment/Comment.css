@@ -1,0 +1,25 @@
+.comment-item {
+    margin: 10px 0;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #120d4e;
+}
+
+.comment-content {
+    display: flex;
+}
+
+.comment-form {
+    display: flex;
+    width: 100%;
+}
+
+.comment-add {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-user {
+    width: 40px;
+}

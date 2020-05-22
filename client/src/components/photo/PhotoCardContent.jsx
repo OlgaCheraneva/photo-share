@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import CommentContainer from '../comment/CommentContainer';
 
 import {toggleLike, download} from '../../actions/photos';
 import sprite from '../../svg/sprite.svg';
@@ -49,6 +50,7 @@ const PhotoCardContent = ({photo, extended = false, toggleLike, download}) => (
                 <button className="button" onClick={() => download(photo)}>
                     Download
                 </button>
+                <CommentContainer />
             </div>
         )}
     </div>
