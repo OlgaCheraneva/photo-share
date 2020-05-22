@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import {setAlert} from '../../actions/alert';
 import {setPhotoFilter} from '../../actions/photos';
+import './Search.css';
 
 const Search = ({setAlert, setPhotoFilter}) => {
     const [text, setText] = useState('');
@@ -23,13 +24,18 @@ const Search = ({setAlert, setPhotoFilter}) => {
     return (
         <form onSubmit={onSubmit} className="search-form">
             <input
+                className="search-input"
                 type="text"
                 name="text"
                 placeholder="Search Photos..."
                 value={text}
                 onChange={onChange}
             />
-            <input type="submit" value="Search" className="button" />
+            <input
+                type="submit"
+                value="Search"
+                className="button search-button"
+            />
         </form>
     );
 };

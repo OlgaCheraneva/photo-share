@@ -6,8 +6,9 @@ import Home from '../pages/Home';
 import Photo from '../pages/Photo';
 import Auth from '../pages/Auth';
 import NotFound from '../pages/NotFound';
-import Navbar from '../components/layout/Navbar';
-import Alerts from '../components/layout/Alerts';
+import Navbar from './layout/Navbar';
+import Alerts from './layout/Alerts';
+import Filter from './layout/Filter';
 import {loginWithToken} from '../actions/auth';
 import './App.css';
 
@@ -22,6 +23,7 @@ function App({loginWithToken}) {
         <Router>
             <Navbar />
             <Alerts className="p-3" />
+            <Filter />
             <div className="container">
                 <Switch>
                     <Route exact path="/" component={Home} />

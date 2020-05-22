@@ -7,6 +7,7 @@ import {
     PHOTO_ERROR,
     SET_LOADING,
     SET_PHOTO_FILTER,
+    CLEAR_PHOTO_FILTER,
 } from '../actions/types';
 
 const initialState = {
@@ -71,6 +72,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 filter: action.payload,
+                loading: false,
+            };
+        case CLEAR_PHOTO_FILTER:
+            return {
+                ...state,
+                filter: '',
                 loading: false,
             };
         case SET_LOADING:

@@ -6,6 +6,7 @@ import {
     UPDATE_LIKES,
     SET_PHOTO_FILTER,
     SET_LOADING,
+    CLEAR_PHOTO_FILTER,
     PHOTO_ERROR,
 } from './types';
 import {setAlert} from './alert';
@@ -105,6 +106,8 @@ export const setPhotoFilter = (text) => ({
     type: SET_PHOTO_FILTER,
     payload: text,
 });
+
+export const clearPhotoFilter = () => ({type: CLEAR_PHOTO_FILTER});
 
 export const clearPhotos = () => ({type: CLEAR_PHOTOS});
 
