@@ -2,27 +2,32 @@ import {
     GET_PHOTO,
     GET_PHOTOS,
     CLEAR_PHOTO,
+    CLEAR_PHOTOS,
     UPDATE_LIKES,
+    SET_PHOTO_FILTER,
     SET_LOADING,
+    CLEAR_PHOTO_FILTER,
     PHOTO_ERROR,
 } from './types';
 import {setAlert} from './alert';
 import store from '../store';
 
 export const getPhotos = () => async (dispatch) => {
-    const {nextPage, limit, orderBy} = store.getState().photos;
+    const {nextPage, limit, orderBy, filter} = store.getState().photos;
 
     if (nextPage === 1) dispatch(setLoading());
 
     try {
         const res = await fetch(
-            `/api/photos?page=${nextPage}&limit=${limit}&orderBy=${orderBy}`
+            `/api/photos?page=${nextPage}&limit=${limit}&orderBy=${orderBy}${
+                filter ? `&filter=${filter}` : ''
+            }`
         );
         const data = await res.json();
         if (res.ok) {
             dispatch({
                 type: GET_PHOTOS,
-                payload: data,
+                payload: filter ? data.results : data,
             });
         } else {
             handleError(dispatch, data);
@@ -96,6 +101,15 @@ export const toggleLike = ({id, liked_by_user}) => async (dispatch) => {
         dispatch(setAlert(error));
     }
 };
+
+export const setPhotoFilter = (text) => ({
+    type: SET_PHOTO_FILTER,
+    payload: text,
+});
+
+export const clearPhotoFilter = () => ({type: CLEAR_PHOTO_FILTER});
+
+export const clearPhotos = () => ({type: CLEAR_PHOTOS});
 
 export const setLoading = () => ({type: SET_LOADING});
 

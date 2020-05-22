@@ -1,0 +1,30 @@
+.search-form {
+    display: flex;
+}
+
+.search-input {
+    flex-grow: 1;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    outline: none;
+    background-color: #13594d;
+    opacity: 0.8;
+}
+
+.search-input:focus {
+    background-color: #fff;
+    opacity: 1;
+}
+
+.search-input::placeholder {
+    color: #fff;
+}
+
+.search-input:focus::placeholder {
+    color: #000;
+}
+
+.search-button:hover {
+    color: #4dffe1;
+}
