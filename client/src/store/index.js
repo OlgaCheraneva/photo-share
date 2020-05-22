@@ -4,10 +4,14 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 
 const initialState = {};
+const composeEnhancers = composeWithDevTools({
+    trace: true,
+    traceLimit: 1000,
+});
 const store = createStore(
     rootReducer,
     initialState,
-    composeWithDevTools(applyMiddleware(thunk))
+    composeEnhancers(applyMiddleware(thunk))
 );
 
 let currentState = {

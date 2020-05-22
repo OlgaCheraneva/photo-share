@@ -4,11 +4,11 @@ const fetch = require('node-fetch');
 require('dotenv').config();
 global.fetch = fetch;
 
-// const connectDB = require('./config/db');
+const connectDB = require('./db');
 
 const app = express();
 
-// connectDB();
+connectDB();
 
 app.use(express.json({extended: false}));
 

@@ -1,5 +1,10 @@
 const router = require('express').Router();
-const {unsplash, authenticationUrl} = require('../../unsplash');
+const {
+    accessKey,
+    rootURL,
+    unsplash,
+    authenticationUrl,
+} = require('../../unsplash');
 
 // @route   GET api/auth
 // @desc    Authenticate user & get token
@@ -26,6 +31,21 @@ router.get('/', async (req, res) => {
 router.post('/', (req, res) => {
     unsplash.auth.setBearerToken(req.body.token);
     res.status(200).send();
+});
+
+// @route   GET api/auth/me
+// @desc    Get user's profile
+// @access  Public
+router.get('/me', (req, res) => {
+    fetch(`${rootURL}/me?client_id=${accessKey}`, {
+        headers: {Authorization: `Bearer ${req.body.token}`},
+    })
+        .then((res) => res.json())
+        .then((data) => res.json(data))
+        .catch((error) => {
+            console.error(error.message);
+            res.status(500).send('Server Error');
+        });
 });
 
 // @route   GET api/auth/logout

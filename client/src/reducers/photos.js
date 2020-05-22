@@ -6,6 +6,7 @@ import {
     UPDATE_LIKES,
     PHOTO_ERROR,
     SET_LOADING,
+    ADD_COMMENT,
     SET_PHOTO_FILTER,
     CLEAR_PHOTO_FILTER,
 } from '../actions/types';
@@ -40,6 +41,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 photo: null,
+            };
+        case ADD_COMMENT:
+            return {
+                ...state,
+                photo: {...state.photo, comments: action.payload},
             };
         case CLEAR_PHOTOS:
             return {
