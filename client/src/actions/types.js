@@ -1,6 +1,8 @@
 export const GET_PHOTOS = 'GET_PHOTOS';
 export const GET_PHOTO = 'GET_PHOTO';
 export const CLEAR_PHOTO = 'CLEAR_PHOTO';
+export const CLEAR_PHOTOS = 'CLEAR_PHOTOS';
+export const SET_PHOTO_FILTER = 'SET_PHOTO_FILTER';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_AUTH_LOADING = 'SET_AUTH_LOADING';
 export const SET_DOWNLOAD_BTN_VISIBILITY = 'SET_DOWNLOAD_BTN_VISIBILITY';

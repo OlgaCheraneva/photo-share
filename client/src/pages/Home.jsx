@@ -5,15 +5,17 @@ import {connect} from 'react-redux';
 import Preloader from '../components/layout/Preloader';
 import DownloadButton from '../components/layout/DownloadButton';
 import PhotoList from '../components/photo/PhotoList';
-import {getPhotos} from '../actions/photos';
+import {getPhotos, clearPhotos} from '../actions/photos';
 import {setScrolledByY, setDownloadBtnVisibility} from '../actions/app';
 
 const Home = ({
     isDownloadBtnVisible,
     scrolledByY,
     photos,
+    filter,
     loading,
     getPhotos,
+    clearPhotos,
     setScrolledByY,
     setDownloadBtnVisibility,
 }) => {
@@ -47,13 +49,17 @@ const Home = ({
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-        getPhotos();
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
         // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        clearPhotos();
+        getPhotos();
+    }, [filter, clearPhotos, getPhotos]);
 
     useEffect(() => {
         const {scrollHeight, clientHeight} = document.documentElement;
@@ -83,12 +89,14 @@ Home.propTypes = {
 const mapStateToProps = (state) => ({
     scrolledByY: state.app.scrolledByY,
     isDownloadBtnVisible: state.app.isDownloadBtnVisible,
+    filter: state.photos.filter,
     photos: state.photos.photos,
     loading: state.photos.loading,
 });
 
 export default connect(mapStateToProps, {
     getPhotos,
+    clearPhotos,
     setScrolledByY,
     setDownloadBtnVisibility,
 })(Home);

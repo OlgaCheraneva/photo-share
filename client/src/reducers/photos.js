@@ -2,9 +2,11 @@ import {
     GET_PHOTO,
     GET_PHOTOS,
     CLEAR_PHOTO,
+    CLEAR_PHOTOS,
     UPDATE_LIKES,
     PHOTO_ERROR,
     SET_LOADING,
+    SET_PHOTO_FILTER,
 } from '../actions/types';
 
 const initialState = {
@@ -12,8 +14,9 @@ const initialState = {
     photo: null,
     loading: false,
     nextPage: 1,
-    limit: 10,
+    limit: 5,
     orderBy: 'latest',
+    filter: '',
     errors: [],
 };
 
@@ -37,6 +40,14 @@ export default (state = initialState, action) => {
                 ...state,
                 photo: null,
             };
+        case CLEAR_PHOTOS:
+            return {
+                ...state,
+                photos: [],
+                nextPage: 1,
+                limit: 5,
+                loading: false,
+            };
         case UPDATE_LIKES:
             const {id} = action.payload;
             return {
@@ -54,6 +65,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 errors: [...state.errors, ...action.payload],
+                loading: false,
+            };
+        case SET_PHOTO_FILTER:
+            return {
+                ...state,
+                filter: action.payload,
                 loading: false,
             };
         case SET_LOADING:
