@@ -4,12 +4,13 @@
     top: 0;
     display: flex;
     width: 100%;
-    padding: 0.7rem 2rem;
+    padding: 0.7em 2em;
     justify-content: space-between;
     align-items: center;
     color: #fff;
     background-color: #003f34;
     opacity: 0.9;
+    font-size: 12px;
 }
 
 .logo {
@@ -25,23 +26,34 @@
 
 .logo__image {
     fill: currentColor;
-    width: 3rem;
-    height: 3rem;
-    margin-right: 1rem;
+    width: 2.5em;
+    height: 2.5em;
+    margin-right: 1em;
 }
 
-.search-form {
+.search {
     flex-grow: 1;
-    padding: 0 3rem;
+    padding: 0 3em;
+}
+
+.navbar__user-profile-icon {
+    fill: #fff;
+    width: 2em;
+    height: 2em;
+    vertical-align: middle;
+}
+
+.navbar__user-profile-icon:hover {
+    fill: #4dffe1;
 }
 
 .navbar__button {
     color: inherit;
     background: none;
     border: none;
-    padding: 0.45rem;
-    margin: 0 0.25rem;
-    font-size: 1rem;
+    padding: 0.45em;
+    margin: 0 0.25em;
+    font-size: 1em;
     transition: color ease-in;
 }
 
@@ -49,25 +61,58 @@
     color: #4dffe1;
 }
 
+.auth-text {
+    margin-right: .5em;
+}
+
+.auth-icon {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    vertical-align: middle;
+}
+
 @media (max-width: 768px) {
     .logo__image {
-        width: 2rem;
-        height: 2rem;
+        width: 2em;
+        height: 2em;
+        margin: 0;
+    }
+    .logo__title {
+        display: none;
+    }
+    .search {
+        padding: 0 1em;
+    }
+    .navbar__button {
+        margin-left: 1em;
+        padding: 0;
+    }
+    .auth-text {
+        display: none;
+    }
+    .auth-icon {
+        width: 2em;
+        height: 2em;
+        position: relative;
+        top: 0.1em;
     }
 }
 
 @media (max-width: 425px) {
     .navbar {
-        padding: 0.5rem 1rem;
-    }
-}
-
-@media (max-width: 320px) {
-    .logo__title {
-        font-size: 1.5rem;
+        padding: 0.5em 1em;
     }
     .logo__image {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 2em;
+        height: 2em;
+    }
+    .navbar__user-profile-icon {
+        width: 1.5em;
+        height: 1.5em;
+    }
+    .auth-icon {
+        width: 1.5em;
+        height: 1.5em;
     }
 }
