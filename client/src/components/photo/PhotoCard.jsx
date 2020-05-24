@@ -6,7 +6,9 @@ import PhotoCardContent from './PhotoCardContent';
 import './PhotoCard.css';
 
 const PhotoCard = ({photo, extended = false}) => (
-    <section className={`photo-card${!extended && ' photo-card_small mb-1'}`}>
+    <section
+        className={`photo-card${extended ? '' : ' photo-card_small mb-1'}`}
+    >
         <div className="photo-card__image">
             <PhotoLink photo={photo} sourceLink={extended}>
                 <img

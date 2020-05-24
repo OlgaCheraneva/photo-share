@@ -34,7 +34,7 @@ img {
 
 .container {
     max-width: 1100px;
-    margin: 6rem auto 3rem;
+    margin: 4rem auto 3rem;
     padding: 0 2rem;
     overflow: hidden;
     display: flex;
@@ -85,12 +85,6 @@ img {
 
 .button:hover {
     opacity: 0.8;
-}
-
-@media (max-width: 768px) {
-    .container {
-        margin: 4rem auto 3rem;
-    }
 }
 
 @media (max-width: 425px) {
