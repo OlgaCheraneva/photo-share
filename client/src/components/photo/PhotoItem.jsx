@@ -19,9 +19,7 @@ const Photo = ({photo}) => (
                 />
             </a>
         </div>
-        <div className="p-1">
-            <PhotoCardContent photo={photo} extended={true} />
-        </div>
+        <PhotoCardContent photo={photo} extended={true} />
     </section>
 );
 

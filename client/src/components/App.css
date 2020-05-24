@@ -86,3 +86,12 @@ img {
 .button:hover {
     opacity: 0.8;
 }
+
+@media (max-width: 425px) {
+    body {
+        font-size: 12px;
+    }
+    .container {
+        padding: 0;
+    }
+}

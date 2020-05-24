@@ -9,7 +9,7 @@ import sprite from '../../svg/sprite.svg';
 const PhotoCardContent = ({photo, extended = false, toggleLike, download}) => (
     <div className="photo-card__content">
         <div className="photo-card__content-top">
-            <div>
+            <div className="photo-card__info">
                 <p>
                     Created by{' '}
                     <a href={photo.user.links.html}>{photo.user.name}</a> on{' '}
