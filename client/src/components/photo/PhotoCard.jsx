@@ -1,30 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import PhotoLink from './PhotoLink';
 import PhotoCardContent from './PhotoCardContent';
 import './PhotoCard.css';
 
-const Photo = ({photo}) => (
-    <section className="photo-card">
+const PhotoCard = ({photo, extended = false}) => (
+    <section className={`photo-card${!extended && ' photo-card_small mb-1'}`}>
         <div className="photo-card__image">
-            <a
-                href={photo.links.html}
-                target="_blank"
-                rel="noreferrer noopener"
-            >
+            <PhotoLink photo={photo} sourceLink={extended}>
                 <img
+                    className={extended ? '' : 'photo-preview'}
                     src={photo.urls.full}
                     alt={photo.alt_description}
                     title={photo.description}
                 />
-            </a>
+            </PhotoLink>
         </div>
-        <PhotoCardContent photo={photo} extended={true} />
+        <PhotoCardContent photo={photo} extended={extended} />
     </section>
 );
 
-Photo.propTypes = {
+PhotoCard.propTypes = {
     photo: PropTypes.object.isRequired,
 };
 
-export default Photo;
+export default PhotoCard;

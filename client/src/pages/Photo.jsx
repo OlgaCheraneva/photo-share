@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import Preloader from '../components/layout/Preloader';
-import PhotoItem from '../components/photo/PhotoItem';
+import PhotoCard from '../components/photo/PhotoCard';
 import {clearPhoto, getPhoto} from '../actions/photos';
 
 const Photo = ({
@@ -23,14 +23,13 @@ const Photo = ({
 
     useEffect(() => {
         getPhoto(match.params.id);
-
         // eslint-disable-next-line
     }, [auth.isAuthenticated]);
 
     return loading || photo === null ? (
         <Preloader />
     ) : (
-        <PhotoItem photo={photo} />
+        <PhotoCard photo={photo} extended={true} />
     );
 };
 

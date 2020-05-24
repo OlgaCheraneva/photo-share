@@ -87,11 +87,18 @@ img {
     opacity: 0.8;
 }
 
+@media (max-width: 768px) {
+    .container {
+        margin: 4rem auto 3rem;
+    }
+}
+
 @media (max-width: 425px) {
     body {
         font-size: 12px;
     }
     .container {
         padding: 0;
+        margin: 3rem auto 0;
     }
 }
