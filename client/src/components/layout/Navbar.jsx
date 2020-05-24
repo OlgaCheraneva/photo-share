@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Search from '../layout/Search';
+import sprite from '../../svg/sprite.svg';
 import {logout} from '../../actions/auth';
 import {setAlert} from '../../actions/alert';
-import sprite from '../../svg/sprite.svg';
 import './Navbar.css';
 
 const Navbar = ({auth: {isAuthenticated, loading}, logout, setAlert}) => {

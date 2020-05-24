@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import PhotoLink from './PhotoLink';
 import PhotoCardContent from './PhotoCardContent';
+import sprite from '../../svg/sprite.svg';
+import {download} from '../../actions/photos';
 import './PhotoCard.css';
 
-const PhotoCard = ({photo, extended = false}) => (
+const PhotoCard = ({photo, extended = false, download}) => (
     <section
         className={`photo-card${extended ? '' : ' photo-card_small mb-1'}`}
     >
@@ -18,6 +21,15 @@ const PhotoCard = ({photo, extended = false}) => (
                     title={photo.description}
                 />
             </PhotoLink>
+            <button
+                className="download-button"
+                onClick={() => download(photo)}
+                title="Download"
+            >
+                <svg className="download-button__icon">
+                    <use href={`${sprite}#download`} />
+                </svg>
+            </button>
         </div>
         <PhotoCardContent photo={photo} extended={extended} />
     </section>
@@ -25,6 +37,7 @@ const PhotoCard = ({photo, extended = false}) => (
 
 PhotoCard.propTypes = {
     photo: PropTypes.object.isRequired,
+    download: PropTypes.func.isRequired,
 };
 
-export default PhotoCard;
+export default connect(null, {download})(PhotoCard);

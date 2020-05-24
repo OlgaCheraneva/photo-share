@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import CommentContainer from '../comment/CommentContainer';
 
-import {toggleLike, download} from '../../actions/photos';
+import CommentContainer from '../comment/CommentContainer';
+import {toggleLike} from '../../actions/photos';
 import sprite from '../../svg/sprite.svg';
 
-const PhotoCardContent = ({photo, extended = false, toggleLike, download}) => (
+const PhotoCardContent = ({photo, extended = false, toggleLike}) => (
     <div className="photo-card__content">
         <div className="photo-card__content-top">
             <div className="photo-card__info">
@@ -47,9 +47,6 @@ const PhotoCardContent = ({photo, extended = false, toggleLike, download}) => (
         {extended && (
             <div className="photo-card__content-bottom">
                 <p className="my-1">{photo.description}</p>
-                <button className="button" onClick={() => download(photo)}>
-                    Download
-                </button>
                 <CommentContainer />
             </div>
         )}
@@ -60,7 +57,6 @@ PhotoCardContent.propTypes = {
     photo: PropTypes.object.isRequired,
     extended: PropTypes.bool,
     toggleLike: PropTypes.func.isRequired,
-    download: PropTypes.func.isRequired,
 };
 
-export default connect(null, {toggleLike, download})(PhotoCardContent);
+export default connect(null, {toggleLike})(PhotoCardContent);

@@ -3,6 +3,33 @@
     border: 1px solid #cacaca;
 }
 
+.photo-card__image {
+    position: relative;
+}
+
+.download-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    margin: 2rem 1rem;
+    background: none;
+    border: none;
+    color: #000;
+    opacity: .5;
+    outline: none;
+    transition: opacity 500ms;
+}
+
+.download-button:hover {
+    opacity: 1;
+}
+
+.download-button__icon {
+    width: 2rem;
+    height: 2rem;
+}
+
 .photo-card_small {
     max-width: 800px;
 }
