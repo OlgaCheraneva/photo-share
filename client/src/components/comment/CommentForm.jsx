@@ -16,21 +16,23 @@ const CommentForm = ({
         setText('');
     };
 
-    return (
-        !loading &&
-        isAuthenticated && (
-            <form className="comment-form" onSubmit={onSubmit}>
-                <img src="/user.svg" alt="user" className="img-user" />
-                <div className="comment-add">
-                    <textarea
-                        name="comment"
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                    ></textarea>
-                    <button>Submit</button>
-                </div>
-            </form>
-        )
+    return !loading && isAuthenticated ? (
+        <form className="comment-form" onSubmit={onSubmit}>
+            <textarea
+                name="comment"
+                placeholder="Добавьте комментарий..."
+                autocomplete="off"
+                autocorrect="off"
+                className="comment-text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+            ></textarea>
+            <button className="button comment-bt">Submit</button>
+        </form>
+    ) : (
+        <span className="comment-form comment-form-not-auth">
+            Авторизируйтесь для добавления комментариев.
+        </span>
     );
 };
 

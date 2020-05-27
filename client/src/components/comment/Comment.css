@@ -12,14 +12,30 @@
 
 .comment-form {
     display: flex;
-    width: 100%;
-}
-
-.comment-add {
-    display: flex;
     flex-direction: column;
+
+    width: 100%;
+    margin: 10px 0 0;
 }
 
 .img-user {
     width: 40px;
+}
+
+.comment-form-not-auth {
+    color: #ff7043;
+}
+
+.comment-text {
+    height: 70px;
+    margin-bottom: 10px;
+    padding: 5px;
+    outline: 0;
+    resize: none;
+    border: solid 0.7px #00000038;
+    border-radius: 3px;
+}
+
+.comment-bt {
+    width: 100%;
 }
