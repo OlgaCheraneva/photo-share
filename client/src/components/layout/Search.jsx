@@ -1,43 +1,67 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {setAlert} from '../../actions/alert';
-import {setPhotoFilter} from '../../actions/photos';
+import {setPhotoFilter, clearPhotoFilter} from '../../actions/photos';
+import sprite from '../../svg/sprite.svg';
 import './Search.css';
 
-const Search = ({setAlert, setPhotoFilter}) => {
+const Search = ({setAlert, setPhotoFilter, clearPhotoFilter}) => {
     const [text, setText] = useState('');
 
     const onSubmit = (e) => {
+        console.log(1);
         e.preventDefault();
 
         if (text.trim === '') {
             setAlert('Please enter something to search');
         } else {
             setPhotoFilter(text.trim().toLowerCase());
-            setText('');
         }
     };
 
     const onChange = (e) => setText(e.target.value);
 
+    const onClick = () => {
+        setText('');
+        clearPhotoFilter();
+    };
+
     return (
         <form onSubmit={onSubmit} className="search-form">
-            <input
-                className="search-input"
-                type="text"
-                name="text"
-                placeholder="Search Photos..."
-                value={text}
-                onChange={onChange}
-            />
-            <input
-                type="submit"
-                value="Search"
-                className="button search-button"
-            />
+            <div className="search-input-group">
+                <input
+                    className="search-input"
+                    type="text"
+                    name="text"
+                    placeholder="Search Photos..."
+                    value={text}
+                    onChange={onChange}
+                />
+                {text !== '' && (
+                    <button
+                        type="button"
+                        className="clear-search-button"
+                        onClick={onClick}
+                    >
+                        <svg className="clear-search-button__icon">
+                            <use href={`${sprite}#close`} />
+                        </svg>
+                    </button>
+                )}
+            </div>
+            <input type="submit" value="Search" className="search-button" />
         </form>
     );
 };
 
-export default connect(null, {setAlert, setPhotoFilter})(Search);
+Search.propTypes = {
+    setAlert: PropTypes.func.isRequired,
+    setPhotoFilter: PropTypes.func.isRequired,
+    clearPhotoFilter: PropTypes.func.isRequired,
+};
+
+export default connect(null, {setAlert, setPhotoFilter, clearPhotoFilter})(
+    Search
+);
