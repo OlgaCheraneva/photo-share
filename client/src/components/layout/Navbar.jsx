@@ -36,7 +36,7 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout, setAlert}) => {
                     </div>
                     {isAuthenticated ? (
                         <Fragment>
-                            <Link>
+                            <Link to="#!">
                                 <svg className="navbar__user-profile-icon">
                                     <use href={`${sprite}#user`} />
                                 </svg>

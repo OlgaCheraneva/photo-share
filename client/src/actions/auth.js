@@ -9,13 +9,11 @@ export const login = (code, history) => async (dispatch) => {
     try {
         const res = await fetch(`/api/auth?code=${code}`);
         const data = await res.json();
-
         if (res.ok) {
             dispatch({
                 type: LOGIN,
                 payload: data, // token string
             });
-
             history.push('/');
         } else {
             dispatch({
@@ -33,17 +31,26 @@ export const loginWithToken = (token) => async (dispatch) => {
     dispatch(setLoading());
 
     try {
-        await fetch('/api/auth', {
+        const response = await fetch('/api/auth', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({token}),
         });
-        dispatch({
-            type: LOGIN,
-            payload: token,
-        });
+        const data = await response.json();
+        if (response.ok) {
+            dispatch({
+                type: LOGIN,
+                payload: {token, profile: data.profile},
+            });
+        } else {
+            dispatch({
+                type: AUTH_ERROR,
+                payload: data, // error string
+            });
+            dispatch(setAlert(data), 'danger');
+        }
     } catch (error) {
         console.error(error);
     }
