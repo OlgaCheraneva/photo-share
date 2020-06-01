@@ -6,8 +6,17 @@ const {
     authenticationUrl,
 } = require('../../unsplash');
 
+async function getUserProfile(token) {
+    const response = await fetch(`${rootURL}/me?client_id=${accessKey}`, {
+        headers: {Authorization: `Bearer ${token}`},
+    });
+    const data = await response.json();
+
+    return response.status < 400 ? data : null;
+}
+
 // @route   GET api/auth
-// @desc    Authenticate user & get token
+// @desc    Authenticate user & get token and user profile
 // @access  Public
 router.get('/', async (req, res) => {
     try {
@@ -18,34 +27,34 @@ router.get('/', async (req, res) => {
         }
         const token = data.access_token;
         unsplash.auth.setBearerToken(token);
-        res.json(data.access_token);
+        const profile = await getUserProfile(token);
+        if (!profile) {
+            return res.status(403).json("Can't get a profile");
+        }
+        res.json({token, profile});
     } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Server Error');
+        console.error(error);
+        res.status(500).json('Server Error');
     }
 });
 
 // @route   POST api/auth
-// @desc    Authenticate user with the token
+// @desc    Authenticate user with the token and get user profile
 // @access  Public
-router.post('/', (req, res) => {
-    unsplash.auth.setBearerToken(req.body.token);
-    res.status(200).send();
-});
+router.post('/', async (req, res) => {
+    const token = req.body.token;
+    unsplash.auth.setBearerToken(token);
 
-// @route   GET api/auth/me
-// @desc    Get user's profile
-// @access  Public
-router.get('/me', (req, res) => {
-    fetch(`${rootURL}/me?client_id=${accessKey}`, {
-        headers: {Authorization: `Bearer ${req.body.token}`},
-    })
-        .then((res) => res.json())
-        .then((data) => res.json(data))
-        .catch((error) => {
-            console.error(error.message);
-            res.status(500).send('Server Error');
-        });
+    try {
+        const profile = await getUserProfile(token);
+        if (!profile) {
+            return res.status(403).json("Can't get a profile");
+        }
+        res.json({profile});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json('Server Error');
+    }
 });
 
 // @route   GET api/auth/logout

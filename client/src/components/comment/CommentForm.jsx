@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+
 import {addComment} from '../../actions/comments';
 
 const CommentForm = ({
@@ -9,6 +10,7 @@ const CommentForm = ({
     addComment,
 }) => {
     const [text, setText] = useState('');
+
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -16,22 +18,29 @@ const CommentForm = ({
         setText('');
     };
 
+    const onKeyDown = (e) => {
+        if (e.keyCode === 13 && !e.shiftKey) {
+            onSubmit(e);
+        }
+    };
+
     return !loading && isAuthenticated ? (
         <form className="comment-form" onSubmit={onSubmit}>
             <textarea
                 name="comment"
-                placeholder="Добавьте комментарий..."
-                autocomplete="off"
-                autocorrect="off"
-                className="comment-text"
+                placeholder="Add a comment..."
+                className="comment-form-text"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
+                onKeyDown={onKeyDown}
             ></textarea>
-            <button className="button comment-bt">Submit</button>
+            <button type="submit" className="button comment-bt">
+                Submit
+            </button>
         </form>
     ) : (
         <span className="comment-form comment-form-not-auth">
-            Авторизируйтесь для добавления комментариев.
+            Authorize to add comments.
         </span>
     );
 };

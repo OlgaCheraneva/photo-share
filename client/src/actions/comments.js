@@ -1,14 +1,14 @@
 import {ADD_COMMENT, PHOTO_ERROR, SET_LOADING} from './types';
 import {setAlert} from './alert';
+import store from '../store';
 
 export const addComment = (comment) => async (dispatch) => {
     const {text, photoId} = comment;
-    const {userId, username, avatar, profileURI} = {
-        userId: 'userId',
-        username: 'userName',
-        avatar: 'avatar',
-        profileURI: 'URI',
-    };
+    const profile = store.getState().auth.profile;
+    const userId = profile.username;
+    const username = profile.name;
+    const avatar = profile.profile_image.large;
+    const profileURI = profile.links.html;
     try {
         const res = await fetch(`/api/photos/comments/${photoId}`, {
             method: 'PUT',

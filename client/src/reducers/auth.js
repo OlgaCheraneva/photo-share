@@ -3,6 +3,7 @@ import {LOGOUT, LOGIN, AUTH_ERROR, SET_AUTH_LOADING} from '../actions/types';
 const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: false,
+    profile: null,
     loading: false,
     errors: [],
 };
@@ -12,8 +13,8 @@ export default (state = initialState, action) => {
         case LOGIN:
             return {
                 ...state,
+                ...action.payload,
                 isAuthenticated: true,
-                token: action.payload,
                 loading: false,
             };
         case LOGOUT:
@@ -21,12 +22,16 @@ export default (state = initialState, action) => {
                 ...state,
                 isAuthenticated: false,
                 token: null,
+                profile: null,
                 loading: false,
             };
         case AUTH_ERROR:
             return {
                 ...state,
                 errors: [...state.errors, action.payload],
+                isAuthenticated: false,
+                token: null,
+                profile: null,
                 loading: false,
             };
         case SET_AUTH_LOADING:
