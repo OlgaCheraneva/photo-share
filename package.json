@@ -8,6 +8,7 @@
     "server": "nodemon server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "jest --watch",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
@@ -23,15 +24,16 @@
   "homepage": "https://github.com/OlgaCheraneva/photo-share#readme",
   "dependencies": {
     "config": "3.3.1",
-    "dotenv": "^8.2.0",
+    "dotenv": "8.2.0",
     "express": "4.17.1",
-    "express-validator": "^6.5.0",
+    "express-validator": "6.5.0",
     "mongoose": "5.9.7",
-    "node-fetch": "^2.6.0",
-    "unsplash-js": "^6.0.0"
+    "node-fetch": "2.6.0",
+    "unsplash-js": "6.0.0"
   },
   "devDependencies": {
     "concurrently": "5.1.0",
+    "jest": "24.9.0",
     "nodemon": "2.0.2"
   }
 }
