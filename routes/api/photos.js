@@ -3,26 +3,12 @@ const {unsplash} = require('../../unsplash');
 const {check, validationResult} = require('express-validator');
 
 const Photo = require('../../db/models/Photo');
+const {getPhotos} = require('../../controllers/photos');
 
 // @route   GET api/photos
 // @desc    Get photos
 // @access  Public
-router.get('/', async (req, res) => {
-    try {
-        const {page, limit, orderBy, filter} = req.query;
-        const response = filter
-            ? await unsplash.search.photos(filter, page, limit)
-            : await unsplash.photos.listPhotos(page, limit, orderBy);
-        const data = await response.json();
-        if (response.status >= 400) {
-            return res.status(404).json(data.errors); // [string]
-        }
-        res.json(data); // [photo object]
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Server Error');
-    }
-});
+router.get('/', getPhotos);
 
 // @route   GET api/photos/:id
 // @desc    Get a photo by id
