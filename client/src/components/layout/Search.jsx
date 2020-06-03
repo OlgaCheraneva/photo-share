@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {setAlert} from '../../actions/alert';
@@ -7,12 +8,12 @@ import {setPhotoFilter, clearPhotoFilter} from '../../actions/photos';
 import sprite from '../../svg/sprite.svg';
 import './Search.css';
 
-const Search = ({setAlert, setPhotoFilter, clearPhotoFilter}) => {
+const Search = ({setAlert, setPhotoFilter, clearPhotoFilter, history}) => {
     const [text, setText] = useState('');
 
     const onSubmit = (e) => {
-        console.log(1);
         e.preventDefault();
+        history.push('/');
 
         if (text.trim === '') {
             setAlert('Please enter something to search');
@@ -63,5 +64,5 @@ Search.propTypes = {
 };
 
 export default connect(null, {setAlert, setPhotoFilter, clearPhotoFilter})(
-    Search
+    withRouter(Search)
 );
