@@ -15,7 +15,6 @@ const Photo = ({
 }) => {
     useEffect(() => {
         getPhoto(match.params.id);
-
         return () => {
             clearPhoto();
         };
@@ -23,8 +22,7 @@ const Photo = ({
 
     useEffect(() => {
         getPhoto(match.params.id);
-        // eslint-disable-next-line
-    }, [auth.isAuthenticated]);
+    }, [auth.isAuthenticated, getPhoto, match.params.id]);
 
     return loading || photo === null ? (
         <Preloader />

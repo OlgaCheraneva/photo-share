@@ -13,6 +13,7 @@ const CommentForm = ({
 
     const onSubmit = (e) => {
         e.preventDefault();
+        if (text.trim() === '') return;
 
         addComment({text, photoId});
         setText('');
