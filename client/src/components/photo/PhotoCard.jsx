@@ -14,12 +14,22 @@ const PhotoCard = ({photo, extended = false, download}) => (
     >
         <div className="photo-card__image">
             <PhotoLink photo={photo} sourceLink={extended}>
-                <img
-                    className={extended ? '' : 'photo-preview'}
-                    src={photo.urls.full}
-                    alt={photo.alt_description}
-                    title={photo.description}
-                />
+                <picture>
+                    <source
+                        media="(max-width: 425px)"
+                        srcset={photo.urls.small}
+                    />
+                    <source
+                        media="(max-width: 1440px)"
+                        srcset={photo.urls.regular}
+                    />
+                    <img
+                        className={extended ? '' : 'photo-preview'}
+                        src={photo.urls.full}
+                        alt={photo.alt_description}
+                        title={photo.description}
+                    />
+                </picture>
             </PhotoLink>
             <button
                 className="download-button"
