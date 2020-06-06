@@ -17,11 +17,11 @@ const PhotoCard = ({photo, extended = false, download}) => (
                 <picture>
                     <source
                         media="(max-width: 425px)"
-                        srcset={photo.urls.small}
+                        srcSet={photo.urls.small}
                     />
                     <source
                         media="(max-width: 1440px)"
-                        srcset={photo.urls.regular}
+                        srcSet={photo.urls.regular}
                     />
                     <img
                         className={extended ? '' : 'photo-preview'}

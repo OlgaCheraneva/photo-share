@@ -8,6 +8,22 @@
     display: flex;
     margin: 40px 0 100px;
 }
+
+.profile-social-media-link {
+    color: #767676;
+    display: flex;
+    align-items: center;
+}
+
+.profile-social-media-link:hover {
+    color: #000;
+}
+
+.profile-social-media-icon {
+    fill: currentColor;
+    margin-right: 0.5rem;
+}
+
 .profile-stats {
     display: flex;
     flex-direction: column;
