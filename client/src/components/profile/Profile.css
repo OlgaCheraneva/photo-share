@@ -1,0 +1,42 @@
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.profile-container {
+    display: flex;
+    margin: 40px 0 100px;
+}
+.profile-stats {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-stats-item {
+    margin-right: 10px;
+}
+
+.profile-description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+.profile-no-photos-img {
+    display: block;
+    max-width: 300px;
+    min-height: 225px;
+    margin: 0 auto;
+}
+
+.total-like {
+    margin-left: 1px;
+    width: 17px;
+    height: 15px;
+}
+
+.profile-total-like {
+    display: flex;
+    align-items: center;
+}

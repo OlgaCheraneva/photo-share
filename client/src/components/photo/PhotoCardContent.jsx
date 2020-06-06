@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import CommentContainer from '../comment/CommentContainer';
@@ -12,7 +13,10 @@ const PhotoCardContent = ({photo, extended = false, toggleLike}) => (
             <div className="photo-card__info">
                 <p>
                     Created by{' '}
-                    <a href={photo.user.links.html}>{photo.user.name}</a> on{' '}
+                    <Link to={`/profile/${photo.user.username}`}>
+                        {photo.user.name}
+                    </Link>{' '}
+                    on{' '}
                     <a href="https://unsplash.com/?utm_source=photo-share&utm_medium=referral">
                         Unsplash
                     </a>
