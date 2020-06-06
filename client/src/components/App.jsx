@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import Home from '../pages/Home';
 import Photo from '../pages/Photo';
+import Profile from '../pages/Profile';
 import Auth from '../pages/Auth';
 import NotFound from '../pages/NotFound';
 import Navbar from './layout/Navbar';
@@ -27,6 +28,11 @@ function App({loginWithToken}) {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/photos/:id" component={Photo} />
                     <Route exact path="/auth" component={Auth} />
+                    <Route
+                        exact
+                        path="/profile/:username"
+                        component={Profile}
+                    />
                     <Route component={NotFound} />
                 </Switch>
             </div>

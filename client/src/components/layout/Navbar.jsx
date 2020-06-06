@@ -9,7 +9,11 @@ import {logout} from '../../actions/auth';
 import {setAlert} from '../../actions/alert';
 import './Navbar.css';
 
-const Navbar = ({auth: {isAuthenticated, loading}, logout, setAlert}) => {
+const Navbar = ({
+    auth: {isAuthenticated, loading, profile},
+    logout,
+    setAlert,
+}) => {
     const onLoginClick = () => {
         fetch('/api/auth/authenticationUrl')
             .then((res) => res.json())
@@ -36,7 +40,7 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout, setAlert}) => {
                     </div>
                     {isAuthenticated ? (
                         <Fragment>
-                            <Link to="#!">
+                            <Link to={`/profile/${profile.username}`}>
                                 <svg className="navbar__user-profile-icon">
                                     <use href={`${sprite}#user`} />
                                 </svg>
