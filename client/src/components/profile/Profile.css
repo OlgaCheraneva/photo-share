@@ -11,6 +11,7 @@
 
 .profile-description-header {
     display: flex;
+    align-items: center;
 }
 
 .follow-button {
@@ -58,6 +59,8 @@
 }
 
 .profile-stats-item {
+    display: flex;
+    align-items: center;
     margin-right: 10px;
 }
 
@@ -74,13 +77,22 @@
     margin: 0 auto;
 }
 
-.total-like {
-    margin-left: 1px;
-    width: 17px;
-    height: 15px;
+.profile-stats-icon {
+    margin-right: 0.5rem;
+    width: 1rem;
+    height: 1rem;
 }
 
 .profile-total-like {
     display: flex;
     align-items: center;
+}
+
+.profile-name {
+    color: #000;
+    font-size: 2rem;
+}
+
+.stats-count {
+    margin-left: 0.6rem;
 }

@@ -17,7 +17,10 @@ const PhotoCardContent = ({photo, extended = false, toggleLike}) => (
                         {photo.user.name}
                     </Link>{' '}
                     on{' '}
-                    <a href="https://unsplash.com/?utm_source=photo-share&utm_medium=referral">
+                    <a
+                        href="https://unsplash.com/?utm_source=photo-share&utm_medium=referral"
+                        target="blank"
+                    >
                         Unsplash
                     </a>
                 </p>
