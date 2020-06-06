@@ -11,6 +11,7 @@
 
 .profile-description-header {
     display: flex;
+    align-items: center;
 }
 
 .follow-button {
@@ -76,9 +77,8 @@
     margin: 0 auto;
 }
 
-.total-like-icon,
-.total-photos-icon {
-    margin: 0 0.5rem;
+.profile-stats-icon {
+    margin-right: 0.5rem;
     width: 1rem;
     height: 1rem;
 }

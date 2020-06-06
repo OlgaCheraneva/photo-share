@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import sprite from '../../svg/sprite.svg';
@@ -77,7 +77,7 @@ const ProfileContainer = ({profile}) => {
                     </ul>
                     <div className="profile-stats">
                         <span className="profile-stats-item profile-total-like">
-                            <svg className="total-like-icon">
+                            <svg className="profile-stats-icon">
                                 <use href={`${sprite}#${'_like'}`} />
                             </svg>
                             Likes
@@ -86,7 +86,7 @@ const ProfileContainer = ({profile}) => {
                             </span>
                         </span>
                         <span className="profile-stats-item profile-total-photo">
-                            <svg className="total-photos-icon">
+                            <svg className="profile-stats-icon">
                                 <use href={`${sprite}#photo`} />
                             </svg>{' '}
                             Photos
@@ -95,7 +95,7 @@ const ProfileContainer = ({profile}) => {
                             </span>
                         </span>
                         <span className="profile-stats-item profile-total-downloads">
-                            <svg className="total-like-icon">
+                            <svg className="profile-stats-icon">
                                 <use href={`${sprite}#download-arrow`} />
                             </svg>{' '}
                             Downloads
