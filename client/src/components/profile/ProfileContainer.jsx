@@ -7,7 +7,12 @@ import './Profile.css';
 const ProfileContainer = ({profile}) => {
     return (
         <div className="profile-container">
-            <a href={profile.links.html}>
+            <a
+                href={profile.links.html}
+                target="blank"
+                no-opener="true"
+                no-referrer="true"
+            >
                 <img
                     src={profile.profile_image.large}
                     alt={profile.name}
@@ -16,7 +21,14 @@ const ProfileContainer = ({profile}) => {
                 />
             </a>
             <div className="profile-description">
-                <h2 className="profile-name">{profile.name}</h2>
+                <a
+                    href={profile.links.html}
+                    target="blank"
+                    no-opener="true"
+                    no-referrer="true"
+                >
+                    <h2 className="profile-name">{profile.name}</h2>
+                </a>
                 {profile.bio && (
                     <span className="profile-bio">{profile.bio}</span>
                 )}
@@ -26,26 +38,38 @@ const ProfileContainer = ({profile}) => {
                             'https://www.instagram.com/' +
                             profile.instagram_username
                         }
+                        target="blank"
+                        no-opener="true"
+                        no-referrer="true"
                     >
                         Instagram
                     </a>
                 )}
                 <div className="profile-stats">
                     <span className="profile-stats-item profile-total-like">
-                        Likes: {profile.total_likes}{' '}
-                        <svg className="total-like">
-                            <use
-                                href={`${sprite}#${
-                                    profile.total_likes > 0 ? 'like' : '_like'
-                                }`}
-                            />
+                        <svg className="total-like-icon">
+                            <use href={`${sprite}#${'_like'}`} />
                         </svg>
+                        Likes
+                        <span className="stats-count">
+                            {profile.total_likes}
+                        </span>
                     </span>
                     <span className="profile-stats-item profile-total-photo">
-                        Photos: {profile.total_photos}
+                        <svg className="total-photos-icon">
+                            <use href={`${sprite}#photo`} />
+                        </svg>{' '}
+                        Photos
+                        <span className="stats-count">
+                            {profile.total_photos}
+                        </span>
                     </span>
                     <span className="profile-stats-item profile-total-downloads">
-                        Downloads: {profile.downloads}
+                        <svg className="total-like-icon">
+                            <use href={`${sprite}#download-arrow`} />
+                        </svg>{' '}
+                        Downloads
+                        <span className="stats-count">{profile.downloads}</span>
                     </span>
                 </div>
             </div>
