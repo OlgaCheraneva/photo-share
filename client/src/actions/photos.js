@@ -12,14 +12,15 @@ import {
 import {setAlert} from './alert';
 import store from '../store';
 
+let nextPage = 1;
 export const getPhotos = () => async (dispatch) => {
-    const {nextPage, limit, orderBy, filter} = store.getState().photos;
+    const {limit, orderBy, filter} = store.getState().photos;
 
     if (nextPage === 1) dispatch(setLoading());
 
     try {
         const res = await fetch(
-            `/api/photos?page=${nextPage}&limit=${limit}&orderBy=${orderBy}${
+            `/api/photos?page=${nextPage++}&limit=${limit}&orderBy=${orderBy}${
                 filter ? `&filter=${filter}` : ''
             }`
         );
@@ -109,7 +110,10 @@ export const setPhotoFilter = (text) => ({
 
 export const clearPhotoFilter = () => ({type: CLEAR_PHOTO_FILTER});
 
-export const clearPhotos = () => ({type: CLEAR_PHOTOS});
+export const clearPhotos = () => {
+    nextPage = 1;
+    return {type: CLEAR_PHOTOS};
+};
 
 export const setLoading = () => ({type: SET_LOADING});
 

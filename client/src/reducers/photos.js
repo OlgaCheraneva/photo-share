@@ -15,7 +15,6 @@ const initialState = {
     photos: [],
     photo: null,
     loading: false,
-    nextPage: 1,
     limit: 5,
     orderBy: 'latest',
     filter: '',
@@ -28,7 +27,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 photos: [...state.photos, ...action.payload],
-                nextPage: state.nextPage + 1,
                 loading: false,
             };
         case GET_PHOTO:
@@ -51,7 +49,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 photos: [],
-                nextPage: 1,
                 limit: 5,
                 loading: false,
             };
