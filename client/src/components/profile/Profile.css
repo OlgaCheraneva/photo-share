@@ -27,6 +27,7 @@
     transition: opacity 0.2s ease-in;
     outline: none;
     margin-left: 2rem;
+    display: none;
 }
 
 .follow-button:hover {
