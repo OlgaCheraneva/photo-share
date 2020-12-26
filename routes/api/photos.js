@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const {unsplash} = require('../../unsplash');
 const {check, validationResult} = require('express-validator');
 
 const Photo = require('../../db/models/Photo');
+const {unsplash} = require('../../unsplash');
 const {getPhotos} = require('../../controllers/photos');
 
 // @route   GET api/photos

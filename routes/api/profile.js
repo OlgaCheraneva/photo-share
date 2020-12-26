@@ -1,5 +1,8 @@
 const router = require('express').Router();
+const {check, validationResult} = require('express-validator');
+
 const {unsplash} = require('../../unsplash');
+const User = require('../../db/models/User');
 
 // @route   GET api/profile/:username
 // @desc    Get user's profile and photos
@@ -8,11 +11,11 @@ router.get('/:username', async (req, res) => {
     const username = req.params.username;
     const {page, limit} = req.query;
     try {
-        const responseProfile = await unsplash.users.profile(username);
-        if (!responseProfile.ok) {
+        const unsplashResponse = await unsplash.users.profile(username);
+        if (!unsplashResponse.ok) {
             return res.status(403).json("Can't get the user's profile");
         }
-        const userProfile = await responseProfile.json();
+        const userProfile = await unsplashResponse.json();
 
         const responseUserOwnPhotos = await unsplash.users.photos(
             username,
@@ -52,5 +55,54 @@ router.get('/:username/photos', async (req, res) => {
         res.status(500).json('Server Error');
     }
 });
+
+// @route   PUT api/profile/subscriptions/:id
+// @desc    Add user subscription
+// @access  Public
+router.put(
+    '/subscriptions/:id',
+    [check('username', 'Username is required').not().isEmpty()],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json(errors.array());
+        }
+
+        const userId = req.params.id;
+        const username = req.body.username;
+
+        try {
+            let user = await User.findOne({id: userId});
+
+            if (!user) {
+                user = await User.create({
+                    id: userId,
+                });
+            }
+
+            const unsplashResponse = await unsplash.users.profile(username);
+            if (!unsplashResponse.ok) {
+                return res.status(403).json("Can't get the user's profile");
+            }
+            const userToSubscribe = await unsplashResponse.json();
+
+            const newSubscription = ({
+                id: userId,
+                username,
+                name,
+                avatar,
+            } = userToSubscribe);
+
+            user.subscriptions.push(newSubscription);
+
+            await user.save();
+
+            res.json(user.subscriptions);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json('Server Error');
+        }
+    }
+);
 
 module.exports = router;

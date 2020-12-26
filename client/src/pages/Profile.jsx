@@ -78,7 +78,7 @@ const Profile = ({
         <Preloader />
     ) : (
         <Fragment>
-            <ProfileContainer profile={profile.profile} />
+            <ProfileContainer />
             {profile.photos.length !== 0 ? (
                 <Fragment>
                     <PhotoList photos={profile.photos} />
@@ -116,8 +116,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-    setScrolledByY,
-    setDownloadBtnVisibility,
     clearUserProfile,
     getUserProfile,
     getUserPhotos,

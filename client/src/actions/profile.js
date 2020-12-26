@@ -3,6 +3,7 @@ import {
     SET_PROFILE_LOADING,
     CLEAR_USER_PROFILE,
     SET_PROFILE_PHOTOS,
+    ADD_SUBSCRIPTION,
 } from './types';
 import {setAlert} from './alert';
 import store from '../store';
@@ -45,6 +46,28 @@ export const getUserPhotos = (username) => async (dispatch) => {
         if (response.ok) {
             dispatch({
                 type: SET_PROFILE_PHOTOS,
+                payload: data,
+            });
+        } else {
+            dispatch(setAlert(data), 'danger');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const subscribe = (username) => async (dispatch) => {
+    const userId = store.getState().auth.profile.id;
+    try {
+        const res = await fetch(`api/profile/subscriptions/${userId}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({username}),
+        });
+        const data = await res.json();
+        if (res.ok) {
+            dispatch({
+                type: ADD_SUBSCRIPTION,
                 payload: data,
             });
         } else {

@@ -38,6 +38,27 @@ export const getPhotos = () => async (dispatch) => {
     }
 };
 
+// export const getPhotosBySubscriptions = (
+//     userId = store.auth.profile.id
+// ) => async (dispatch) => {
+//     dispatch(setLoading());
+
+//     try {
+//         const res = await fetch(`/api/photos/subscriptions/${userId}`);
+//         const data = await res.json();
+//         if (res.ok) {
+//             dispatch({
+//                 type: GET_PHOTOS,
+//                 payload: filter ? data.results : data,
+//             });
+//         } else {
+//             handleError(dispatch, data);
+//         }
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
+
 export const getPhoto = (id) => async (dispatch) => {
     dispatch(setLoading());
 

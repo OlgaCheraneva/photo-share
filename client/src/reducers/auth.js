@@ -1,4 +1,10 @@
-import {LOGOUT, LOGIN, AUTH_ERROR, SET_AUTH_LOADING} from '../actions/types';
+import {
+    LOGOUT,
+    LOGIN,
+    AUTH_ERROR,
+    SET_AUTH_LOADING,
+    ADD_SUBSCRIPTION,
+} from '../actions/types';
 
 const initialState = {
     token: localStorage.getItem('token'),
@@ -32,6 +38,15 @@ export default (state = initialState, action) => {
                 isAuthenticated: false,
                 token: null,
                 profile: null,
+                loading: false,
+            };
+        case ADD_SUBSCRIPTION:
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    subscriptions: action.payload,
+                },
                 loading: false,
             };
         case SET_AUTH_LOADING:

@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
+import {subscribe} from '../../actions/profile';
 import sprite from '../../svg/sprite.svg';
 import './Profile.css';
 
-const ProfileContainer = ({profile}) => {
+const ProfileContainer = ({auth, profile, subscribe}) => {
     return (
         <div className="profile-container">
             <a
@@ -111,7 +113,9 @@ const ProfileContainer = ({profile}) => {
 };
 
 ProfileContainer.propTypes = {
+    auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
+    subscribe: PropTypes.func.isRequired,
 };
 
-export default ProfileContainer;
+export default connect(mapStateToProps, {subscribe})(ProfileContainer);
